@@ -1,0 +1,28 @@
+{
+    "user_id": 1066452,
+    "read_percent": 0.12,
+    "tags": [],
+    "date_updated": "2014-01-20 14:54:08",
+    "favorite": true,
+    "id": 43745203,
+    "date_archived": null,
+    "date_opened": null,
+    "article": {
+        "domain": "www.nytimes.com",
+        "title": "How Not to Be Alone",
+        "url": "http://www.nytimes.com/2013/06/09/opinion/sunday/how-not-to-be-alone.html?pagewanted=all&_r=0",
+        "lead_image_url": "http://graphics8.nytimes.com/images/2013/06/09/sunday-review/09FOER/09FOER-articleLarge.jpg",
+        "author": "JONATHAN SAFRAN FOER",
+        "excerpt": "A COUPLE of weeks ago, I saw a stranger crying in public. I was in Brooklyn&#x2019;s Fort Greene neighborhood, waiting to meet a friend for breakfast. I arrived at the restaurant a few minutes early&hellip;",
+        "direction": "ltr",
+        "word_count": 1185,
+        "date_published": "2013-06-08 00:00:00",
+        "dek": null,
+        "processed": true,
+        "id": "3xuhnzwp"
+    },
+    "article_href": "/api/rest/v1/articles/3xuhnzwp",
+    "date_favorited": "2014-01-20 14:54:08",
+    "date_added": "2013-07-27 04:14:38",
+    "archive": false
+}

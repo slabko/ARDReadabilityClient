@@ -1,0 +1,846 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F000466188C20AA001D5982 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F000465188C20AA001D5982 /* XCTest.framework */; };
+		4F000467188C20AB001D5982 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F000457188C20AA001D5982 /* Foundation.framework */; };
+		4F000472188C20AB001D5982 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F000470188C20AB001D5982 /* InfoPlist.strings */; };
+		4F00049A188CE738001D5982 /* ARDOAuthHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000492188CE71F001D5982 /* ARDOAuthHTTPClient.m */; };
+		4F00049B188CE73C001D5982 /* ARDReadabilityBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000494188CE71F001D5982 /* ARDReadabilityBookmark.m */; };
+		4F0EC9E118914F440075C345 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9CF18914F440075C345 /* AFHTTPClient.m */; };
+		4F0EC9E218914F440075C345 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9CF18914F440075C345 /* AFHTTPClient.m */; };
+		4F0EC9E318914F440075C345 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9CF18914F440075C345 /* AFHTTPClient.m */; };
+		4F0EC9E418914F440075C345 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D118914F440075C345 /* AFHTTPRequestOperation.m */; };
+		4F0EC9E518914F440075C345 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D118914F440075C345 /* AFHTTPRequestOperation.m */; };
+		4F0EC9E618914F440075C345 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D118914F440075C345 /* AFHTTPRequestOperation.m */; };
+		4F0EC9E718914F440075C345 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D318914F440075C345 /* AFImageRequestOperation.m */; };
+		4F0EC9E818914F440075C345 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D318914F440075C345 /* AFImageRequestOperation.m */; };
+		4F0EC9E918914F440075C345 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D318914F440075C345 /* AFImageRequestOperation.m */; };
+		4F0EC9EA18914F440075C345 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D518914F440075C345 /* AFJSONRequestOperation.m */; };
+		4F0EC9EB18914F440075C345 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D518914F440075C345 /* AFJSONRequestOperation.m */; };
+		4F0EC9EC18914F440075C345 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D518914F440075C345 /* AFJSONRequestOperation.m */; };
+		4F0EC9ED18914F440075C345 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D718914F440075C345 /* AFNetworkActivityIndicatorManager.m */; };
+		4F0EC9EE18914F440075C345 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D718914F440075C345 /* AFNetworkActivityIndicatorManager.m */; };
+		4F0EC9EF18914F440075C345 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9D718914F440075C345 /* AFNetworkActivityIndicatorManager.m */; };
+		4F0EC9F018914F440075C345 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DA18914F440075C345 /* AFPropertyListRequestOperation.m */; };
+		4F0EC9F118914F440075C345 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DA18914F440075C345 /* AFPropertyListRequestOperation.m */; };
+		4F0EC9F218914F440075C345 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DA18914F440075C345 /* AFPropertyListRequestOperation.m */; };
+		4F0EC9F318914F440075C345 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DC18914F440075C345 /* AFURLConnectionOperation.m */; };
+		4F0EC9F418914F440075C345 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DC18914F440075C345 /* AFURLConnectionOperation.m */; };
+		4F0EC9F518914F440075C345 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DC18914F440075C345 /* AFURLConnectionOperation.m */; };
+		4F0EC9F618914F440075C345 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DE18914F440075C345 /* AFXMLRequestOperation.m */; };
+		4F0EC9F718914F440075C345 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DE18914F440075C345 /* AFXMLRequestOperation.m */; };
+		4F0EC9F818914F440075C345 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9DE18914F440075C345 /* AFXMLRequestOperation.m */; };
+		4F0EC9F918914F440075C345 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9E018914F440075C345 /* UIImageView+AFNetworking.m */; };
+		4F0EC9FA18914F440075C345 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9E018914F440075C345 /* UIImageView+AFNetworking.m */; };
+		4F0EC9FB18914F440075C345 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9E018914F440075C345 /* UIImageView+AFNetworking.m */; };
+		4F0ECA0618914F530075C345 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9FD18914F530075C345 /* OHHTTPStubs+NSURLSessionConfiguration.m */; };
+		4F0ECA0718914F530075C345 /* OHHTTPStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EC9FF18914F530075C345 /* OHHTTPStubs.m */; };
+		4F0ECA0818914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ECA0118914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.m */; };
+		4F0ECA0918914F530075C345 /* OHHTTPStubsResponse+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ECA0318914F530075C345 /* OHHTTPStubsResponse+JSON.m */; };
+		4F0ECA0A18914F530075C345 /* OHHTTPStubsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ECA0518914F530075C345 /* OHHTTPStubsResponse.m */; };
+		4F0ECA0C189150C20075C345 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0ECA0B189150C20075C345 /* MobileCoreServices.framework */; };
+		4F0ECA0E189150D20075C345 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0ECA0D189150D20075C345 /* SystemConfiguration.framework */; };
+		4F23509E188E62A60007122D /* AllUpdatedBookmarksPage1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F235099188E61030007122D /* AllUpdatedBookmarksPage1.txt */; };
+		4F23509F188E62A90007122D /* AllUpdatedBookmarksPage2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F23509A188E61030007122D /* AllUpdatedBookmarksPage2.txt */; };
+		4F2350A0188E62A90007122D /* AllUpdatedBookmarksPage3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F23509B188E61030007122D /* AllUpdatedBookmarksPage3.txt */; };
+		4F2350A1188E62A90007122D /* AllUpdatedBookmarksPage4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F23509C188E61030007122D /* AllUpdatedBookmarksPage4.txt */; };
+		4F2350A2188E62A90007122D /* AllUpdatedBookmarksPage5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F23509D188E61030007122D /* AllUpdatedBookmarksPage5.txt */; };
+		4F2350A6188E706A0007122D /* AllDeletedBookmarks1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F2350A3188E6F920007122D /* AllDeletedBookmarks1.txt */; };
+		4F2350A7188E706A0007122D /* AllDeletedBookmarks2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F2350A4188E6F920007122D /* AllDeletedBookmarks2.txt */; };
+		4F2350A8188E706A0007122D /* AllDeletedBookmarks3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F2350A5188E6F920007122D /* AllDeletedBookmarks3.txt */; };
+		4FA1D91E188FCCD2005E0A0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F000457188C20AA001D5982 /* Foundation.framework */; };
+		4FA1D946188FCE9C005E0A0C /* ARDTestsAuthentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000473188C20AB001D5982 /* ARDTestsAuthentification.m */; };
+		4FA1D947188FCE9C005E0A0C /* ARDTestBookmars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0004EC188D66E1001D5982 /* ARDTestBookmars.m */; };
+		4FA1D948188FCE9C005E0A0C /* ARDTestArticleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2350A9188E73AB0007122D /* ARDTestArticleContent.m */; };
+		4FA1D949188FCE9C005E0A0C /* ARDTestBookmarksModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE6188F02A2002BD795 /* ARDTestBookmarksModifications.m */; };
+		4FA1D94B188FCEA4005E0A0C /* ARDAsyncLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000498188CE72A001D5982 /* ARDAsyncLock.m */; };
+		4FA1D94C188FCEA4005E0A0C /* XCTestCase+ARDReadabilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EDB188EA97F002BD795 /* XCTestCase+ARDReadabilityTests.m */; };
+		4FA1D951188FCEDD005E0A0C /* ARDReadabilityClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F00049D188CE802001D5982 /* ARDReadabilityClient.m */; };
+		4FA1D952188FCEDD005E0A0C /* ARDOAuthHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000492188CE71F001D5982 /* ARDOAuthHTTPClient.m */; };
+		4FA1D953188FCEDD005E0A0C /* ARDReadabilityBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000494188CE71F001D5982 /* ARDReadabilityBookmark.m */; };
+		4FA1D954188FCEDD005E0A0C /* ARDReadabilityDataFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE3188ED297002BD795 /* ARDReadabilityDataFormatters.m */; };
+		4FA1D955188FCEDD005E0A0C /* NSString+ARDRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE9188F8338002BD795 /* NSString+ARDRegularExpression.m */; };
+		4FA1D956188FCEDE005E0A0C /* ARDReadabilityClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F00049D188CE802001D5982 /* ARDReadabilityClient.m */; };
+		4FA1D95C188FCF88005E0A0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F000457188C20AA001D5982 /* Foundation.framework */; };
+		4FA1D95E188FCF88005E0A0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA1D95D188FCF88005E0A0C /* CoreGraphics.framework */; };
+		4FA1D95F188FCF88005E0A0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA1D8FB188FCCAB005E0A0C /* UIKit.framework */; };
+		4FA1D965188FCF88005E0A0C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1D963188FCF88005E0A0C /* InfoPlist.strings */; };
+		4FA1D967188FCF88005E0A0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1D966188FCF88005E0A0C /* main.m */; };
+		4FA1D96B188FCF88005E0A0C /* ARDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1D96A188FCF88005E0A0C /* ARDAppDelegate.m */; };
+		4FA1D96E188FCF88005E0A0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1D96C188FCF88005E0A0C /* Main.storyboard */; };
+		4FA1D973188FCF88005E0A0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1D972188FCF88005E0A0C /* Images.xcassets */; };
+		4FA1D98E188FD207005E0A0C /* ARDReadingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1D98D188FD207005E0A0C /* ARDReadingListViewController.m */; };
+		4FA1D98F188FD2D8005E0A0C /* ARDReadabilityClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F00049D188CE802001D5982 /* ARDReadabilityClient.m */; };
+		4FA1D990188FD2D8005E0A0C /* ARDOAuthHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000492188CE71F001D5982 /* ARDOAuthHTTPClient.m */; };
+		4FA1D991188FD2D8005E0A0C /* ARDReadabilityBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000494188CE71F001D5982 /* ARDReadabilityBookmark.m */; };
+		4FA1D992188FD2D8005E0A0C /* ARDReadabilityDataFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE3188ED297002BD795 /* ARDReadabilityDataFormatters.m */; };
+		4FA1D993188FD2D8005E0A0C /* NSString+ARDRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE9188F8338002BD795 /* NSString+ARDRegularExpression.m */; };
+		4FA1D996188FD428005E0A0C /* ARDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1D995188FD428005E0A0C /* ARDLoginViewController.m */; };
+		4FA61EDF188EB9BD002BD795 /* Article-3xuhnzwp.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FA61EDE188EB890002BD795 /* Article-3xuhnzwp.txt */; };
+		4FA61EE5188ED387002BD795 /* ARDReadabilityDataFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE3188ED297002BD795 /* ARDReadabilityDataFormatters.m */; };
+		4FA61EEB188F8338002BD795 /* NSString+ARDRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61EE9188F8338002BD795 /* NSString+ARDRegularExpression.m */; };
+		4FA61EEF188FA8BC002BD795 /* Bookmark-43745203.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FA61EEE188FA8BC002BD795 /* Bookmark-43745203.txt */; };
+		4FC906F0188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC906EF188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m */; };
+		4FC906F3188FEC2F003577B9 /* ARDArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC906F2188FEC2F003577B9 /* ARDArticleViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4FA1D91B188FCCD2005E0A0C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4F000457188C20AA001D5982 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4F000464188C20AA001D5982 /* ARDReadabilityClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARDReadabilityClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F000465188C20AA001D5982 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4F00046F188C20AB001D5982 /* ARDReadabilityClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARDReadabilityClientTests-Info.plist"; sourceTree = "<group>"; };
+		4F000471188C20AB001D5982 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4F000473188C20AB001D5982 /* ARDTestsAuthentification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARDTestsAuthentification.m; sourceTree = "<group>"; };
+		4F000491188CE71F001D5982 /* ARDOAuthHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDOAuthHTTPClient.h; sourceTree = "<group>"; };
+		4F000492188CE71F001D5982 /* ARDOAuthHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDOAuthHTTPClient.m; sourceTree = "<group>"; };
+		4F000493188CE71F001D5982 /* ARDReadabilityBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDReadabilityBookmark.h; sourceTree = "<group>"; };
+		4F000494188CE71F001D5982 /* ARDReadabilityBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDReadabilityBookmark.m; sourceTree = "<group>"; };
+		4F000497188CE72A001D5982 /* ARDAsyncLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDAsyncLock.h; sourceTree = "<group>"; };
+		4F000498188CE72A001D5982 /* ARDAsyncLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDAsyncLock.m; sourceTree = "<group>"; };
+		4F00049C188CE802001D5982 /* ARDReadabilityClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDReadabilityClient.h; sourceTree = "<group>"; };
+		4F00049D188CE802001D5982 /* ARDReadabilityClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDReadabilityClient.m; sourceTree = "<group>"; };
+		4F0004EC188D66E1001D5982 /* ARDTestBookmars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDTestBookmars.m; sourceTree = "<group>"; };
+		4F0EC9CE18914F440075C345 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		4F0EC9CF18914F440075C345 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		4F0EC9D018914F440075C345 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		4F0EC9D118914F440075C345 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		4F0EC9D218914F440075C345 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		4F0EC9D318914F440075C345 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		4F0EC9D418914F440075C345 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		4F0EC9D518914F440075C345 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		4F0EC9D618914F440075C345 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		4F0EC9D718914F440075C345 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		4F0EC9D818914F440075C345 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		4F0EC9D918914F440075C345 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		4F0EC9DA18914F440075C345 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		4F0EC9DB18914F440075C345 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		4F0EC9DC18914F440075C345 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		4F0EC9DD18914F440075C345 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		4F0EC9DE18914F440075C345 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		4F0EC9DF18914F440075C345 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		4F0EC9E018914F440075C345 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		4F0EC9FD18914F530075C345 /* OHHTTPStubs+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
+		4F0EC9FE18914F530075C345 /* OHHTTPStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubs.h; sourceTree = "<group>"; };
+		4F0EC9FF18914F530075C345 /* OHHTTPStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubs.m; sourceTree = "<group>"; };
+		4F0ECA0018914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+HTTPMessage.h"; sourceTree = "<group>"; };
+		4F0ECA0118914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+HTTPMessage.m"; sourceTree = "<group>"; };
+		4F0ECA0218914F530075C345 /* OHHTTPStubsResponse+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubsResponse+JSON.h"; sourceTree = "<group>"; };
+		4F0ECA0318914F530075C345 /* OHHTTPStubsResponse+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubsResponse+JSON.m"; sourceTree = "<group>"; };
+		4F0ECA0418914F530075C345 /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsResponse.h; sourceTree = "<group>"; };
+		4F0ECA0518914F530075C345 /* OHHTTPStubsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsResponse.m; sourceTree = "<group>"; };
+		4F0ECA0B189150C20075C345 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4F0ECA0D189150D20075C345 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4F0ECA0F189151790075C345 /* ARDReadabilityClientTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ARDReadabilityClientTests-Prefix.pch"; sourceTree = "<group>"; };
+		4F235099188E61030007122D /* AllUpdatedBookmarksPage1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllUpdatedBookmarksPage1.txt; sourceTree = "<group>"; };
+		4F23509A188E61030007122D /* AllUpdatedBookmarksPage2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllUpdatedBookmarksPage2.txt; sourceTree = "<group>"; };
+		4F23509B188E61030007122D /* AllUpdatedBookmarksPage3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllUpdatedBookmarksPage3.txt; sourceTree = "<group>"; };
+		4F23509C188E61030007122D /* AllUpdatedBookmarksPage4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllUpdatedBookmarksPage4.txt; sourceTree = "<group>"; };
+		4F23509D188E61030007122D /* AllUpdatedBookmarksPage5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllUpdatedBookmarksPage5.txt; sourceTree = "<group>"; };
+		4F2350A3188E6F920007122D /* AllDeletedBookmarks1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllDeletedBookmarks1.txt; sourceTree = "<group>"; };
+		4F2350A4188E6F920007122D /* AllDeletedBookmarks2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllDeletedBookmarks2.txt; sourceTree = "<group>"; };
+		4F2350A5188E6F920007122D /* AllDeletedBookmarks3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllDeletedBookmarks3.txt; sourceTree = "<group>"; };
+		4F2350A9188E73AB0007122D /* ARDTestArticleContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDTestArticleContent.m; sourceTree = "<group>"; };
+		4FA1D8FB188FCCAB005E0A0C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4FA1D91D188FCCD2005E0A0C /* libARDReadabilityClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libARDReadabilityClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA1D95B188FCF88005E0A0C /* ARDReadabilityClientExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARDReadabilityClientExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA1D95D188FCF88005E0A0C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4FA1D962188FCF88005E0A0C /* ARDReadabilityClientExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARDReadabilityClientExample-Info.plist"; sourceTree = "<group>"; };
+		4FA1D964188FCF88005E0A0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4FA1D966188FCF88005E0A0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4FA1D968188FCF88005E0A0C /* ARDReadabilityClientExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARDReadabilityClientExample-Prefix.pch"; sourceTree = "<group>"; };
+		4FA1D969188FCF88005E0A0C /* ARDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARDAppDelegate.h; sourceTree = "<group>"; };
+		4FA1D96A188FCF88005E0A0C /* ARDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARDAppDelegate.m; sourceTree = "<group>"; };
+		4FA1D96D188FCF88005E0A0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4FA1D972188FCF88005E0A0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4FA1D98C188FD207005E0A0C /* ARDReadingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDReadingListViewController.h; sourceTree = "<group>"; };
+		4FA1D98D188FD207005E0A0C /* ARDReadingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDReadingListViewController.m; sourceTree = "<group>"; };
+		4FA1D994188FD428005E0A0C /* ARDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDLoginViewController.h; sourceTree = "<group>"; };
+		4FA1D995188FD428005E0A0C /* ARDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDLoginViewController.m; sourceTree = "<group>"; };
+		4FA61EDA188EA97F002BD795 /* XCTestCase+ARDReadabilityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+ARDReadabilityTests.h"; sourceTree = "<group>"; };
+		4FA61EDB188EA97F002BD795 /* XCTestCase+ARDReadabilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+ARDReadabilityTests.m"; sourceTree = "<group>"; };
+		4FA61EDE188EB890002BD795 /* Article-3xuhnzwp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Article-3xuhnzwp.txt"; sourceTree = "<group>"; };
+		4FA61EE2188ED297002BD795 /* ARDReadabilityDataFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDReadabilityDataFormatters.h; sourceTree = "<group>"; };
+		4FA61EE3188ED297002BD795 /* ARDReadabilityDataFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDReadabilityDataFormatters.m; sourceTree = "<group>"; };
+		4FA61EE6188F02A2002BD795 /* ARDTestBookmarksModifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDTestBookmarksModifications.m; sourceTree = "<group>"; };
+		4FA61EE8188F8338002BD795 /* NSString+ARDRegularExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ARDRegularExpression.h"; sourceTree = "<group>"; };
+		4FA61EE9188F8338002BD795 /* NSString+ARDRegularExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ARDRegularExpression.m"; sourceTree = "<group>"; };
+		4FA61EEE188FA8BC002BD795 /* Bookmark-43745203.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Bookmark-43745203.txt"; sourceTree = "<group>"; };
+		4FC906EE188FE9AF003577B9 /* UIViewController+ARDErrorAllert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ARDErrorAllert.h"; sourceTree = "<group>"; };
+		4FC906EF188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ARDErrorAllert.m"; sourceTree = "<group>"; };
+		4FC906F1188FEC2F003577B9 /* ARDArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDArticleViewController.h; sourceTree = "<group>"; };
+		4FC906F2188FEC2F003577B9 /* ARDArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDArticleViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F000461188C20AA001D5982 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F000466188C20AA001D5982 /* XCTest.framework in Frameworks */,
+				4F000467188C20AB001D5982 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA1D91A188FCCD2005E0A0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0ECA0E189150D20075C345 /* SystemConfiguration.framework in Frameworks */,
+				4F0ECA0C189150C20075C345 /* MobileCoreServices.framework in Frameworks */,
+				4FA1D91E188FCCD2005E0A0C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA1D958188FCF88005E0A0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FA1D95E188FCF88005E0A0C /* CoreGraphics.framework in Frameworks */,
+				4FA1D95F188FCF88005E0A0C /* UIKit.framework in Frameworks */,
+				4FA1D95C188FCF88005E0A0C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F00044B188C20AA001D5982 = {
+			isa = PBXGroup;
+			children = (
+				4F0EC9FC18914F530075C345 /* OHHTTPStubs */,
+				4F0EC9CD18914F440075C345 /* AFNetworking */,
+				4F000459188C20AA001D5982 /* ARDReadabilityClient */,
+				4F00046D188C20AB001D5982 /* ARDReadabilityClientTests */,
+				4FA1D960188FCF88005E0A0C /* ARDReadabilityClientExample */,
+				4F000456188C20AA001D5982 /* Frameworks */,
+				4F000455188C20AA001D5982 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F000455188C20AA001D5982 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F000464188C20AA001D5982 /* ARDReadabilityClientTests.xctest */,
+				4FA1D91D188FCCD2005E0A0C /* libARDReadabilityClient.a */,
+				4FA1D95B188FCF88005E0A0C /* ARDReadabilityClientExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F000456188C20AA001D5982 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F0ECA0D189150D20075C345 /* SystemConfiguration.framework */,
+				4F0ECA0B189150C20075C345 /* MobileCoreServices.framework */,
+				4F000457188C20AA001D5982 /* Foundation.framework */,
+				4F000465188C20AA001D5982 /* XCTest.framework */,
+				4FA1D8FB188FCCAB005E0A0C /* UIKit.framework */,
+				4FA1D95D188FCF88005E0A0C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F000459188C20AA001D5982 /* ARDReadabilityClient */ = {
+			isa = PBXGroup;
+			children = (
+				4F00049C188CE802001D5982 /* ARDReadabilityClient.h */,
+				4F00049D188CE802001D5982 /* ARDReadabilityClient.m */,
+				4F000491188CE71F001D5982 /* ARDOAuthHTTPClient.h */,
+				4F000492188CE71F001D5982 /* ARDOAuthHTTPClient.m */,
+				4F000493188CE71F001D5982 /* ARDReadabilityBookmark.h */,
+				4F000494188CE71F001D5982 /* ARDReadabilityBookmark.m */,
+				4FA61EE2188ED297002BD795 /* ARDReadabilityDataFormatters.h */,
+				4FA61EE3188ED297002BD795 /* ARDReadabilityDataFormatters.m */,
+				4FA61EE8188F8338002BD795 /* NSString+ARDRegularExpression.h */,
+				4FA61EE9188F8338002BD795 /* NSString+ARDRegularExpression.m */,
+			);
+			path = ARDReadabilityClient;
+			sourceTree = "<group>";
+		};
+		4F00046D188C20AB001D5982 /* ARDReadabilityClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F000497188CE72A001D5982 /* ARDAsyncLock.h */,
+				4F000498188CE72A001D5982 /* ARDAsyncLock.m */,
+				4FA61EDA188EA97F002BD795 /* XCTestCase+ARDReadabilityTests.h */,
+				4FA61EDB188EA97F002BD795 /* XCTestCase+ARDReadabilityTests.m */,
+				4F000473188C20AB001D5982 /* ARDTestsAuthentification.m */,
+				4F0004EC188D66E1001D5982 /* ARDTestBookmars.m */,
+				4F2350A9188E73AB0007122D /* ARDTestArticleContent.m */,
+				4FA61EE6188F02A2002BD795 /* ARDTestBookmarksModifications.m */,
+				4F235098188E61030007122D /* Test Data */,
+				4F00046E188C20AB001D5982 /* Supporting Files */,
+			);
+			path = ARDReadabilityClientTests;
+			sourceTree = "<group>";
+		};
+		4F00046E188C20AB001D5982 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F00046F188C20AB001D5982 /* ARDReadabilityClientTests-Info.plist */,
+				4F000470188C20AB001D5982 /* InfoPlist.strings */,
+				4F0ECA0F189151790075C345 /* ARDReadabilityClientTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F0EC9CD18914F440075C345 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				4F0EC9CE18914F440075C345 /* AFHTTPClient.h */,
+				4F0EC9CF18914F440075C345 /* AFHTTPClient.m */,
+				4F0EC9D018914F440075C345 /* AFHTTPRequestOperation.h */,
+				4F0EC9D118914F440075C345 /* AFHTTPRequestOperation.m */,
+				4F0EC9D218914F440075C345 /* AFImageRequestOperation.h */,
+				4F0EC9D318914F440075C345 /* AFImageRequestOperation.m */,
+				4F0EC9D418914F440075C345 /* AFJSONRequestOperation.h */,
+				4F0EC9D518914F440075C345 /* AFJSONRequestOperation.m */,
+				4F0EC9D618914F440075C345 /* AFNetworkActivityIndicatorManager.h */,
+				4F0EC9D718914F440075C345 /* AFNetworkActivityIndicatorManager.m */,
+				4F0EC9D818914F440075C345 /* AFNetworking.h */,
+				4F0EC9D918914F440075C345 /* AFPropertyListRequestOperation.h */,
+				4F0EC9DA18914F440075C345 /* AFPropertyListRequestOperation.m */,
+				4F0EC9DB18914F440075C345 /* AFURLConnectionOperation.h */,
+				4F0EC9DC18914F440075C345 /* AFURLConnectionOperation.m */,
+				4F0EC9DD18914F440075C345 /* AFXMLRequestOperation.h */,
+				4F0EC9DE18914F440075C345 /* AFXMLRequestOperation.m */,
+				4F0EC9DF18914F440075C345 /* UIImageView+AFNetworking.h */,
+				4F0EC9E018914F440075C345 /* UIImageView+AFNetworking.m */,
+			);
+			name = AFNetworking;
+			path = AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		4F0EC9FC18914F530075C345 /* OHHTTPStubs */ = {
+			isa = PBXGroup;
+			children = (
+				4F0EC9FD18914F530075C345 /* OHHTTPStubs+NSURLSessionConfiguration.m */,
+				4F0EC9FE18914F530075C345 /* OHHTTPStubs.h */,
+				4F0EC9FF18914F530075C345 /* OHHTTPStubs.m */,
+				4F0ECA0018914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.h */,
+				4F0ECA0118914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.m */,
+				4F0ECA0218914F530075C345 /* OHHTTPStubsResponse+JSON.h */,
+				4F0ECA0318914F530075C345 /* OHHTTPStubsResponse+JSON.m */,
+				4F0ECA0418914F530075C345 /* OHHTTPStubsResponse.h */,
+				4F0ECA0518914F530075C345 /* OHHTTPStubsResponse.m */,
+			);
+			name = OHHTTPStubs;
+			path = OHHTTPStubs/OHHTTPStubs/Sources;
+			sourceTree = "<group>";
+		};
+		4F235098188E61030007122D /* Test Data */ = {
+			isa = PBXGroup;
+			children = (
+				4FA61EDE188EB890002BD795 /* Article-3xuhnzwp.txt */,
+				4F2350A3188E6F920007122D /* AllDeletedBookmarks1.txt */,
+				4F2350A4188E6F920007122D /* AllDeletedBookmarks2.txt */,
+				4F2350A5188E6F920007122D /* AllDeletedBookmarks3.txt */,
+				4F235099188E61030007122D /* AllUpdatedBookmarksPage1.txt */,
+				4F23509A188E61030007122D /* AllUpdatedBookmarksPage2.txt */,
+				4F23509B188E61030007122D /* AllUpdatedBookmarksPage3.txt */,
+				4F23509C188E61030007122D /* AllUpdatedBookmarksPage4.txt */,
+				4F23509D188E61030007122D /* AllUpdatedBookmarksPage5.txt */,
+				4FA61EEE188FA8BC002BD795 /* Bookmark-43745203.txt */,
+			);
+			path = "Test Data";
+			sourceTree = "<group>";
+		};
+		4FA1D960188FCF88005E0A0C /* ARDReadabilityClientExample */ = {
+			isa = PBXGroup;
+			children = (
+				4FA1D969188FCF88005E0A0C /* ARDAppDelegate.h */,
+				4FA1D96A188FCF88005E0A0C /* ARDAppDelegate.m */,
+				4FC906EE188FE9AF003577B9 /* UIViewController+ARDErrorAllert.h */,
+				4FC906EF188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m */,
+				4FA1D994188FD428005E0A0C /* ARDLoginViewController.h */,
+				4FA1D995188FD428005E0A0C /* ARDLoginViewController.m */,
+				4FA1D98C188FD207005E0A0C /* ARDReadingListViewController.h */,
+				4FA1D98D188FD207005E0A0C /* ARDReadingListViewController.m */,
+				4FC906F1188FEC2F003577B9 /* ARDArticleViewController.h */,
+				4FC906F2188FEC2F003577B9 /* ARDArticleViewController.m */,
+				4FA1D96C188FCF88005E0A0C /* Main.storyboard */,
+				4FA1D972188FCF88005E0A0C /* Images.xcassets */,
+				4FA1D961188FCF88005E0A0C /* Supporting Files */,
+			);
+			path = ARDReadabilityClientExample;
+			sourceTree = "<group>";
+		};
+		4FA1D961188FCF88005E0A0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4FA1D962188FCF88005E0A0C /* ARDReadabilityClientExample-Info.plist */,
+				4FA1D963188FCF88005E0A0C /* InfoPlist.strings */,
+				4FA1D966188FCF88005E0A0C /* main.m */,
+				4FA1D968188FCF88005E0A0C /* ARDReadabilityClientExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F000463188C20AA001D5982 /* ARDReadabilityClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F00047A188C20AB001D5982 /* Build configuration list for PBXNativeTarget "ARDReadabilityClientTests" */;
+			buildPhases = (
+				4F000460188C20AA001D5982 /* Sources */,
+				4F000461188C20AA001D5982 /* Frameworks */,
+				4F000462188C20AA001D5982 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARDReadabilityClientTests;
+			productName = ARDReadabilityClientTests;
+			productReference = 4F000464188C20AA001D5982 /* ARDReadabilityClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4FA1D91C188FCCD2005E0A0C /* ARDReadabilityClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FA1D939188FCCD2005E0A0C /* Build configuration list for PBXNativeTarget "ARDReadabilityClient" */;
+			buildPhases = (
+				4FA1D919188FCCD2005E0A0C /* Sources */,
+				4FA1D91A188FCCD2005E0A0C /* Frameworks */,
+				4FA1D91B188FCCD2005E0A0C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARDReadabilityClient;
+			productName = ARDReadabilityClient;
+			productReference = 4FA1D91D188FCCD2005E0A0C /* libARDReadabilityClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4FA1D95A188FCF88005E0A0C /* ARDReadabilityClientExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FA1D986188FCF88005E0A0C /* Build configuration list for PBXNativeTarget "ARDReadabilityClientExample" */;
+			buildPhases = (
+				4FA1D957188FCF88005E0A0C /* Sources */,
+				4FA1D958188FCF88005E0A0C /* Frameworks */,
+				4FA1D959188FCF88005E0A0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARDReadabilityClientExample;
+			productName = ARDReadabilityClientExample;
+			productReference = 4FA1D95B188FCF88005E0A0C /* ARDReadabilityClientExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F00044C188C20AA001D5982 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = ru.slabko;
+			};
+			buildConfigurationList = 4F00044F188C20AA001D5982 /* Build configuration list for PBXProject "ARDReadabilityClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F00044B188C20AA001D5982;
+			productRefGroup = 4F000455188C20AA001D5982 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4FA1D91C188FCCD2005E0A0C /* ARDReadabilityClient */,
+				4F000463188C20AA001D5982 /* ARDReadabilityClientTests */,
+				4FA1D95A188FCF88005E0A0C /* ARDReadabilityClientExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F000462188C20AA001D5982 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F000472188C20AB001D5982 /* InfoPlist.strings in Resources */,
+				4F2350A7188E706A0007122D /* AllDeletedBookmarks2.txt in Resources */,
+				4F2350A2188E62A90007122D /* AllUpdatedBookmarksPage5.txt in Resources */,
+				4F2350A1188E62A90007122D /* AllUpdatedBookmarksPage4.txt in Resources */,
+				4F23509F188E62A90007122D /* AllUpdatedBookmarksPage2.txt in Resources */,
+				4F2350A6188E706A0007122D /* AllDeletedBookmarks1.txt in Resources */,
+				4F23509E188E62A60007122D /* AllUpdatedBookmarksPage1.txt in Resources */,
+				4F2350A0188E62A90007122D /* AllUpdatedBookmarksPage3.txt in Resources */,
+				4FA61EDF188EB9BD002BD795 /* Article-3xuhnzwp.txt in Resources */,
+				4F2350A8188E706A0007122D /* AllDeletedBookmarks3.txt in Resources */,
+				4FA61EEF188FA8BC002BD795 /* Bookmark-43745203.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA1D959188FCF88005E0A0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FA1D973188FCF88005E0A0C /* Images.xcassets in Resources */,
+				4FA1D965188FCF88005E0A0C /* InfoPlist.strings in Resources */,
+				4FA1D96E188FCF88005E0A0C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F000460188C20AA001D5982 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0EC9E818914F440075C345 /* AFImageRequestOperation.m in Sources */,
+				4F0ECA0918914F530075C345 /* OHHTTPStubsResponse+JSON.m in Sources */,
+				4F0EC9E518914F440075C345 /* AFHTTPRequestOperation.m in Sources */,
+				4FA1D94C188FCEA4005E0A0C /* XCTestCase+ARDReadabilityTests.m in Sources */,
+				4F00049A188CE738001D5982 /* ARDOAuthHTTPClient.m in Sources */,
+				4F0EC9F418914F440075C345 /* AFURLConnectionOperation.m in Sources */,
+				4F0ECA0818914F530075C345 /* OHHTTPStubsResponse+HTTPMessage.m in Sources */,
+				4F0EC9EE18914F440075C345 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4FA1D947188FCE9C005E0A0C /* ARDTestBookmars.m in Sources */,
+				4FA61EE5188ED387002BD795 /* ARDReadabilityDataFormatters.m in Sources */,
+				4F0ECA0618914F530075C345 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */,
+				4F0EC9F118914F440075C345 /* AFPropertyListRequestOperation.m in Sources */,
+				4FA1D949188FCE9C005E0A0C /* ARDTestBookmarksModifications.m in Sources */,
+				4F0EC9F718914F440075C345 /* AFXMLRequestOperation.m in Sources */,
+				4F0EC9FA18914F440075C345 /* UIImageView+AFNetworking.m in Sources */,
+				4F0ECA0A18914F530075C345 /* OHHTTPStubsResponse.m in Sources */,
+				4F00049B188CE73C001D5982 /* ARDReadabilityBookmark.m in Sources */,
+				4F0ECA0718914F530075C345 /* OHHTTPStubs.m in Sources */,
+				4F0EC9EB18914F440075C345 /* AFJSONRequestOperation.m in Sources */,
+				4FA1D946188FCE9C005E0A0C /* ARDTestsAuthentification.m in Sources */,
+				4FA61EEB188F8338002BD795 /* NSString+ARDRegularExpression.m in Sources */,
+				4FA1D956188FCEDE005E0A0C /* ARDReadabilityClient.m in Sources */,
+				4FA1D94B188FCEA4005E0A0C /* ARDAsyncLock.m in Sources */,
+				4FA1D948188FCE9C005E0A0C /* ARDTestArticleContent.m in Sources */,
+				4F0EC9E218914F440075C345 /* AFHTTPClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA1D919188FCCD2005E0A0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0EC9E718914F440075C345 /* AFImageRequestOperation.m in Sources */,
+				4FA1D952188FCEDD005E0A0C /* ARDOAuthHTTPClient.m in Sources */,
+				4FA1D955188FCEDD005E0A0C /* NSString+ARDRegularExpression.m in Sources */,
+				4F0EC9F618914F440075C345 /* AFXMLRequestOperation.m in Sources */,
+				4FA1D951188FCEDD005E0A0C /* ARDReadabilityClient.m in Sources */,
+				4F0EC9F918914F440075C345 /* UIImageView+AFNetworking.m in Sources */,
+				4F0EC9F318914F440075C345 /* AFURLConnectionOperation.m in Sources */,
+				4F0EC9ED18914F440075C345 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4FA1D953188FCEDD005E0A0C /* ARDReadabilityBookmark.m in Sources */,
+				4F0EC9EA18914F440075C345 /* AFJSONRequestOperation.m in Sources */,
+				4FA1D954188FCEDD005E0A0C /* ARDReadabilityDataFormatters.m in Sources */,
+				4F0EC9F018914F440075C345 /* AFPropertyListRequestOperation.m in Sources */,
+				4F0EC9E118914F440075C345 /* AFHTTPClient.m in Sources */,
+				4F0EC9E418914F440075C345 /* AFHTTPRequestOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA1D957188FCF88005E0A0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0EC9E918914F440075C345 /* AFImageRequestOperation.m in Sources */,
+				4F0EC9E618914F440075C345 /* AFHTTPRequestOperation.m in Sources */,
+				4FA1D98E188FD207005E0A0C /* ARDReadingListViewController.m in Sources */,
+				4FA1D990188FD2D8005E0A0C /* ARDOAuthHTTPClient.m in Sources */,
+				4F0EC9F518914F440075C345 /* AFURLConnectionOperation.m in Sources */,
+				4F0EC9EF18914F440075C345 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4FC906F3188FEC2F003577B9 /* ARDArticleViewController.m in Sources */,
+				4FA1D991188FD2D8005E0A0C /* ARDReadabilityBookmark.m in Sources */,
+				4F0EC9F218914F440075C345 /* AFPropertyListRequestOperation.m in Sources */,
+				4FA1D98F188FD2D8005E0A0C /* ARDReadabilityClient.m in Sources */,
+				4F0EC9F818914F440075C345 /* AFXMLRequestOperation.m in Sources */,
+				4F0EC9FB18914F440075C345 /* UIImageView+AFNetworking.m in Sources */,
+				4FA1D996188FD428005E0A0C /* ARDLoginViewController.m in Sources */,
+				4F0EC9EC18914F440075C345 /* AFJSONRequestOperation.m in Sources */,
+				4FA1D96B188FCF88005E0A0C /* ARDAppDelegate.m in Sources */,
+				4FA1D967188FCF88005E0A0C /* main.m in Sources */,
+				4FC906F0188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m in Sources */,
+				4FA1D993188FD2D8005E0A0C /* NSString+ARDRegularExpression.m in Sources */,
+				4FA1D992188FD2D8005E0A0C /* ARDReadabilityDataFormatters.m in Sources */,
+				4F0EC9E318914F440075C345 /* AFHTTPClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F000470188C20AB001D5982 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F000471188C20AB001D5982 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4FA1D963188FCF88005E0A0C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FA1D964188FCF88005E0A0C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4FA1D96C188FCF88005E0A0C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FA1D96D188FCF88005E0A0C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F000475188C20AB001D5982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F000476188C20AB001D5982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F00047B188C20AB001D5982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/ARDReadabilityClient-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/OHHTTPStubs\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		4F00047C188C20AB001D5982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/ARDReadabilityClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/OHHTTPStubs\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		4FA1D93A188FCCD2005E0A0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/ARDReadabilityClient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/ARDReadabilityClient-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4FA1D93B188FCCD2005E0A0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/ARDReadabilityClient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/ARDReadabilityClient-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4FA1D987188FCF88005E0A0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ARDReadabilityClientExample/ARDReadabilityClientExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ARDReadabilityClientExample/ARDReadabilityClientExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4FA1D988188FCF88005E0A0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ARDReadabilityClientExample/ARDReadabilityClientExample-Prefix.pch";
+				INFOPLIST_FILE = "ARDReadabilityClientExample/ARDReadabilityClientExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F00044F188C20AA001D5982 /* Build configuration list for PBXProject "ARDReadabilityClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F000475188C20AB001D5982 /* Debug */,
+				4F000476188C20AB001D5982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F00047A188C20AB001D5982 /* Build configuration list for PBXNativeTarget "ARDReadabilityClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F00047B188C20AB001D5982 /* Debug */,
+				4F00047C188C20AB001D5982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FA1D939188FCCD2005E0A0C /* Build configuration list for PBXNativeTarget "ARDReadabilityClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FA1D93A188FCCD2005E0A0C /* Debug */,
+				4FA1D93B188FCCD2005E0A0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FA1D986188FCF88005E0A0C /* Build configuration list for PBXNativeTarget "ARDReadabilityClientExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FA1D987188FCF88005E0A0C /* Debug */,
+				4FA1D988188FCF88005E0A0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F00044C188C20AA001D5982 /* Project object */;
+}

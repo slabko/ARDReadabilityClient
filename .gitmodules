@@ -1,0 +1,7 @@
+[submodule "OHHTTPStubs"]
+	path = OHHTTPStubs
+	url = https://github.com/AliSoftware/OHHTTPStubs.git
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking.git
+	branch = 1.x
