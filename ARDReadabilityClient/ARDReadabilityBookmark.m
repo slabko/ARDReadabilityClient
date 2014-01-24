@@ -55,17 +55,17 @@
 
 - (float)readPercent
 {
-    return [_bookmarkJSON[@"read_percent"] floatValue];
+    return [[NSNumber dynamicCast:_bookmarkJSON[@"read_percent"]] floatValue];
 }
 
 - (BOOL)isFavorite
 {
-    return [_bookmarkJSON[@"favorite"] boolValue];
+    return [[NSNumber dynamicCast:_bookmarkJSON[@"favorite"]] boolValue];
 }
 
 - (NSUInteger)bookmarkId
 {
-    return [_bookmarkJSON[@"id"] integerValue];
+    return [[NSNumber dynamicCast:_bookmarkJSON[@"id"]] integerValue];
 }
 
 - (NSDate *)dateAdded
@@ -80,7 +80,7 @@
 
 - (BOOL)isArchived
 {
-    return [_bookmarkJSON[@"archive"] boolValue];
+    return [[NSNumber dynamicCast:_bookmarkJSON[@"archive"]] boolValue];
 }
 
 - (NSString *)articleId
