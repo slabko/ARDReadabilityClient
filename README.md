@@ -67,7 +67,7 @@ Simply add to your Podfile:
 
 And run `pod update`
 
-Another way way is to add `ARDReadabilityClient` to your project is to copy an `ARDReadabilityClient` folder to your project. In this case, `AFNetworking` version 1.3 should be added to the project. 
+Another way way is to add `ARDReadabilityClient` to your project is to copy the `ARDReadabilityClient` folder to your project. In this case, `AFNetworking` version 1.3 should be added to the project. 
 
 ## Support
 Please submit any issues, and I will work on them as fast as I can. Also, all pull requests that improve ARDReadabilityClient are welcomed.
