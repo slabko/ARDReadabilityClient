@@ -88,6 +88,7 @@
 		4FA61EEF188FA8BC002BD795 /* Bookmark-43745203.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FA61EEE188FA8BC002BD795 /* Bookmark-43745203.txt */; };
 		4FC906F0188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC906EF188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m */; };
 		4FC906F3188FEC2F003577B9 /* ARDArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC906F2188FEC2F003577B9 /* ARDArticleViewController.m */; };
+		C9384F8118F7EA4F003E34A1 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = C9384F8018F7EA4F003E34A1 /* GTMNSString+HTML.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -187,6 +188,8 @@
 		4FC906EF188FE9AF003577B9 /* UIViewController+ARDErrorAllert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ARDErrorAllert.m"; sourceTree = "<group>"; };
 		4FC906F1188FEC2F003577B9 /* ARDArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDArticleViewController.h; sourceTree = "<group>"; };
 		4FC906F2188FEC2F003577B9 /* ARDArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDArticleViewController.m; sourceTree = "<group>"; };
+		C9384F7F18F7EA4F003E34A1 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		C9384F8018F7EA4F003E34A1 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 				4FA61EE3188ED297002BD795 /* ARDReadabilityDataFormatters.m */,
 				4FA61EE8188F8338002BD795 /* NSString+ARDRegularExpression.h */,
 				4FA61EE9188F8338002BD795 /* NSString+ARDRegularExpression.m */,
+				C9384F7F18F7EA4F003E34A1 /* GTMNSString+HTML.h */,
+				C9384F8018F7EA4F003E34A1 /* GTMNSString+HTML.m */,
 			);
 			path = ARDReadabilityClient;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 			files = (
 				4F0EC9E718914F440075C345 /* AFImageRequestOperation.m in Sources */,
 				4FA1D952188FCEDD005E0A0C /* ARDOAuthHTTPClient.m in Sources */,
+				C9384F8118F7EA4F003E34A1 /* GTMNSString+HTML.m in Sources */,
 				4FA1D955188FCEDD005E0A0C /* NSString+ARDRegularExpression.m in Sources */,
 				4F0EC9F618914F440075C345 /* AFXMLRequestOperation.m in Sources */,
 				4FA1D951188FCEDD005E0A0C /* ARDReadabilityClient.m in Sources */,

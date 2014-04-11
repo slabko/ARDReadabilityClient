@@ -8,6 +8,7 @@
 
 #import "ARDReadabilityBookmark.h"
 #import "ARDReadabilityDataFormatters.h"
+#import "GTMNSString+HTML.h"
 
 @interface NSObject(ARDdynamicCast)
 
@@ -34,7 +35,10 @@
 }
 @end
 
-@implementation ARDReadabilityBookmark
+@implementation ARDReadabilityBookmark {
+    NSString *articleTitle;
+    NSString *articleExcerpt;
+}
 
 
 - (id)initWithJSON:(id)JSON
@@ -90,12 +94,18 @@
 
 - (NSString *)articleTitle
 {
-    return [NSString dynamicCast:_articleJSON[@"title"]];
+    if (!articleTitle) {
+        articleTitle = [[NSString dynamicCast:_articleJSON[@"title"]] gtm_stringByUnescapingFromHTML];
+    }
+    return articleTitle;
 }
 
 - (NSString *)articleExcerpt
 {
-    return [NSString dynamicCast:_articleJSON[@"excerpt"]];
+    if (!articleExcerpt) {
+        articleExcerpt = [[NSString dynamicCast:_articleJSON[@"excerpt"]] gtm_stringByUnescapingFromHTML];
+    }
+    return articleExcerpt;
 }
 
 - (NSDate *)articleDatePublished
