@@ -10,6 +10,8 @@
 #import "ARDReadabilityDataFormatters.h"
 #import "GTMNSString+HTML.h"
 
+const NSUInteger ARDShortExcerptLength = 100;
+
 @interface NSObject(ARDdynamicCast)
 
 + (instancetype)dynamicCast:(id)value;
@@ -112,10 +114,10 @@
 
 - (NSString *)shortArticleExcerpt {
     if (!shortArticleExcerpt) {
-        if (self.articleExcerpt.length < 100) {
+        if (self.articleExcerpt.length < ARDShortExcerptLength) {
             shortArticleExcerpt = self.articleExcerpt;
         } else {
-            shortArticleExcerpt = [self.articleExcerpt substringToIndex:100];
+            shortArticleExcerpt = [[self.articleExcerpt substringToIndex:ARDShortExcerptLength] stringByAppendingString:@"..."];
         }
     }
     return shortArticleExcerpt;
