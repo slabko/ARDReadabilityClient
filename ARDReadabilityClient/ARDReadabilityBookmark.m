@@ -32,12 +32,14 @@
 {
     NSDictionary *_bookmarkJSON;
     NSDictionary *_articleJSON;
+    NSString *articleTitle;
+    NSString *articleExcerpt;
+    NSString *shortArticleExcerpt;
 }
 @end
 
 @implementation ARDReadabilityBookmark {
-    NSString *articleTitle;
-    NSString *articleExcerpt;
+    
 }
 
 
@@ -106,6 +108,17 @@
         articleExcerpt = [[NSString dynamicCast:_articleJSON[@"excerpt"]] gtm_stringByUnescapingFromHTML];
     }
     return articleExcerpt;
+}
+
+- (NSString *)shortArticleExcerpt {
+    if (!shortArticleExcerpt) {
+        if (self.articleExcerpt.length < 100) {
+            shortArticleExcerpt = self.articleExcerpt;
+        } else {
+            shortArticleExcerpt = [self.articleExcerpt substringToIndex:100];
+        }
+    }
+    return shortArticleExcerpt;
 }
 
 - (NSDate *)articleDatePublished

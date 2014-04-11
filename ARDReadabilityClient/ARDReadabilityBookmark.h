@@ -20,6 +20,7 @@
 @property (readonly, nonatomic) NSString *articleId;
 @property (readonly, nonatomic) NSString *articleTitle;
 @property (readonly, nonatomic) NSString *articleExcerpt;
+@property (readonly, nonatomic) NSString *shortArticleExcerpt;
 @property (readonly, nonatomic) NSDate *articleDatePublished;
 @property (readonly, nonatomic) NSString *articleURL;
 
