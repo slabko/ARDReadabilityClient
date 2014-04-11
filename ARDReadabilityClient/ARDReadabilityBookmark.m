@@ -135,7 +135,7 @@ const NSUInteger ARDShortExcerptLength = 110;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"{%lu, %@ (%@), %@, %d}", self.bookmarkId, self.articleTitle, self.articleId,
+    return [NSString stringWithFormat:@"{%lu, %@ (%@), %@, %d}", (unsigned long) self.bookmarkId, self.articleTitle, self.articleId,
             self.dateUpdated, self.isFavorite];
 }
 
