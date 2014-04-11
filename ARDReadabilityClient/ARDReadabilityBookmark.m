@@ -133,7 +133,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"{%d, %@ (%@), %@, %d}", self.bookmarkId, self.articleTitle, self.articleId,
+    return [NSString stringWithFormat:@"{%lu, %@ (%@), %@, %d}", self.bookmarkId, self.articleTitle, self.articleId,
             self.dateUpdated, self.isFavorite];
 }
 
