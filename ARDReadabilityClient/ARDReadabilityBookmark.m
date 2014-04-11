@@ -10,7 +10,7 @@
 #import "ARDReadabilityDataFormatters.h"
 #import "GTMNSString+HTML.h"
 
-const NSUInteger ARDShortExcerptLength = 100;
+const NSUInteger ARDShortExcerptLength = 130;
 
 @interface NSObject(ARDdynamicCast)
 
