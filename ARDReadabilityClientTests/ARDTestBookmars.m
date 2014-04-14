@@ -87,9 +87,9 @@
         XCTAssertEqualObjects(bookmark.articleId, @"3xuhnzwp", @"Wrong value of the date article ID field");
         XCTAssertEqualObjects(bookmark.articleTitle, @"How Not to Be Alone",
                               @"Wrong value of the date article title field");
-        NSString *expectedArticleExcerpt = @"A COUPLE of weeks ago, I saw a stranger crying in public. I was in "
-                                            "Brooklyn&#x2019;s Fort Greene neighborhood, waiting to meet a friend for "
-                                            "breakfast. I arrived at the restaurant a few minutes early&hellip;";
+        NSString *expectedArticleExcerpt = @"A COUPLE of weeks ago, I saw a stranger crying in public. "
+                                            "I was in Brooklyn’s Fort Greene neighborhood, waiting to meet "
+                                            "a friend for breakfast. I arrived at the restaurant a few minutes early…";
         XCTAssertEqualObjects(bookmark.articleExcerpt, expectedArticleExcerpt,
                               @"Wrong value of the date article excerpt field");
         XCTAssertEqualObjects(bookmark.articleDatePublished, [NSDate dateWithTimeIntervalSince1970:1370664000],

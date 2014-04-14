@@ -54,6 +54,8 @@
 		4F2350A6188E706A0007122D /* AllDeletedBookmarks1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F2350A3188E6F920007122D /* AllDeletedBookmarks1.txt */; };
 		4F2350A7188E706A0007122D /* AllDeletedBookmarks2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F2350A4188E6F920007122D /* AllDeletedBookmarks2.txt */; };
 		4F2350A8188E706A0007122D /* AllDeletedBookmarks3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F2350A5188E6F920007122D /* AllDeletedBookmarks3.txt */; };
+		4F80EFB118FBB2EA00C72C84 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = C9384F8018F7EA4F003E34A1 /* GTMNSString+HTML.m */; };
+		4F80EFB218FBB2EA00C72C84 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = C9384F8018F7EA4F003E34A1 /* GTMNSString+HTML.m */; };
 		4FA1D91E188FCCD2005E0A0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F000457188C20AA001D5982 /* Foundation.framework */; };
 		4FA1D946188FCE9C005E0A0C /* ARDTestsAuthentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F000473188C20AB001D5982 /* ARDTestsAuthentification.m */; };
 		4FA1D947188FCE9C005E0A0C /* ARDTestBookmars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0004EC188D66E1001D5982 /* ARDTestBookmars.m */; };
@@ -543,6 +545,7 @@
 				4FA1D94B188FCEA4005E0A0C /* ARDAsyncLock.m in Sources */,
 				4FA1D948188FCE9C005E0A0C /* ARDTestArticleContent.m in Sources */,
 				4F0EC9E218914F440075C345 /* AFHTTPClient.m in Sources */,
+				4F80EFB218FBB2EA00C72C84 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +595,7 @@
 				4FA1D993188FD2D8005E0A0C /* NSString+ARDRegularExpression.m in Sources */,
 				4FA1D992188FD2D8005E0A0C /* ARDReadabilityDataFormatters.m in Sources */,
 				4F0EC9E318914F440075C345 /* AFHTTPClient.m in Sources */,
+				4F80EFB118FBB2EA00C72C84 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
