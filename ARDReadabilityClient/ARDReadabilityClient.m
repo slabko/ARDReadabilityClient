@@ -310,7 +310,9 @@ static inline NSString *unexpectedServerResponse()
     for (AFJSONRequestOperation *operation in operations) {
         NSDictionary *responseJSON = operation.responseJSON;
         if (!responseJSON) {
-            *error = [self processError:operation.error requestOperation:operation];
+            if (error != NULL) {
+                *error = [self processError:operation.error requestOperation:operation];
+            }
             *erroneousOpeation = operation;
             return nil;
         }
@@ -372,7 +374,7 @@ static inline NSString *unexpectedServerResponse()
 
 - (NSString *)bookmarkPath:(NSUInteger)bookmarkId
 {
-    return [BookmarksURLPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", bookmarkId]];
+    return [BookmarksURLPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)bookmarkId]];
 }
 
 @end

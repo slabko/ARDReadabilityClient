@@ -8,6 +8,9 @@
 
 #import "ARDReadabilityBookmark.h"
 #import "ARDReadabilityDataFormatters.h"
+#import "GTMNSString+HTML.h"
+
+const NSUInteger ARDShortExcerptLength = 110;
 
 @interface NSObject(ARDdynamicCast)
 
@@ -31,10 +34,15 @@
 {
     NSDictionary *_bookmarkJSON;
     NSDictionary *_articleJSON;
+    NSString *articleTitle;
+    NSString *articleExcerpt;
+    NSString *shortArticleExcerpt;
 }
 @end
 
-@implementation ARDReadabilityBookmark
+@implementation ARDReadabilityBookmark {
+    
+}
 
 
 - (id)initWithJSON:(id)JSON
@@ -90,12 +98,29 @@
 
 - (NSString *)articleTitle
 {
-    return [NSString dynamicCast:_articleJSON[@"title"]];
+    if (!articleTitle) {
+        articleTitle = [[NSString dynamicCast:_articleJSON[@"title"]] gtm_stringByUnescapingFromHTML];
+    }
+    return articleTitle;
 }
 
 - (NSString *)articleExcerpt
 {
-    return [NSString dynamicCast:_articleJSON[@"excerpt"]];
+    if (!articleExcerpt) {
+        articleExcerpt = [[NSString dynamicCast:_articleJSON[@"excerpt"]] gtm_stringByUnescapingFromHTML];
+    }
+    return articleExcerpt;
+}
+
+- (NSString *)shortArticleExcerpt {
+    if (!shortArticleExcerpt) {
+        if (self.articleExcerpt.length < ARDShortExcerptLength) {
+            shortArticleExcerpt = self.articleExcerpt;
+        } else {
+            shortArticleExcerpt = [[self.articleExcerpt substringToIndex:ARDShortExcerptLength] stringByAppendingString:@"..."];
+        }
+    }
+    return shortArticleExcerpt;
 }
 
 - (NSDate *)articleDatePublished
@@ -110,7 +135,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"{%d, %@ (%@), %@, %d}", self.bookmarkId, self.articleTitle, self.articleId,
+    return [NSString stringWithFormat:@"{%lu, %@ (%@), %@, %d}", (unsigned long) self.bookmarkId, self.articleTitle, self.articleId,
             self.dateUpdated, self.isFavorite];
 }
 
