@@ -117,7 +117,8 @@ const NSUInteger ARDShortExcerptLength = 110;
         if (self.articleExcerpt.length < ARDShortExcerptLength) {
             shortArticleExcerpt = self.articleExcerpt;
         } else {
-            shortArticleExcerpt = [[self.articleExcerpt substringToIndex:ARDShortExcerptLength] stringByAppendingString:@"..."];
+            shortArticleExcerpt = [self.articleExcerpt substringToIndex:ARDShortExcerptLength];
+            shortArticleExcerpt = [shortArticleExcerpt stringByAppendingString:@"..."];
         }
     }
     return shortArticleExcerpt;
@@ -135,8 +136,8 @@ const NSUInteger ARDShortExcerptLength = 110;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"{%lu, %@ (%@), %@, %d}", (unsigned long) self.bookmarkId, self.articleTitle, self.articleId,
-            self.dateUpdated, self.isFavorite];
+    return [NSString stringWithFormat:@"{%lu, %@ (%@), %@, %d}", (unsigned long) self.bookmarkId,
+            self.articleTitle, self.articleId, self.dateUpdated, self.isFavorite];
 }
 
 - (NSDate *)dateFromString:(NSString *)string

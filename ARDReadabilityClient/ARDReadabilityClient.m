@@ -211,7 +211,8 @@ static inline NSString *unexpectedServerResponse()
     NSDictionary *parameters = @{@"favorite" : favorite ? @"1" : @"0",
                                  @"archive" : archive ? @"1" : @"0",
                                  @"read_percent" : [NSString stringWithFormat:@"%.2f", readPercent]};
-    [self POST:path parameters:parameters constructingBodyWithBlock:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self POST:path parameters:parameters constructingBodyWithBlock:nil
+    success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(operation);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(operation, [self processError:error requestOperation:operation]);
@@ -254,8 +255,8 @@ static inline NSString *unexpectedServerResponse()
                                  @"archive" : archive ? @"1" : @"0",
                                  @"allow_duplicates" : @"0"};
 
-    
-    [self POST:BookmarksURLPath parameters:parameters constructingBodyWithBlock:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self POST:BookmarksURLPath parameters:parameters constructingBodyWithBlock:nil
+    success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *articleLocation = [operation.response allHeaderFields][@"X-Article-Location"];
         NSString *articleId = [articleLocation firstMatchOfRegex:@"/([^/]+)$" captureGroupIndex:1];
         success(operation, articleId);
@@ -315,7 +316,9 @@ static inline NSString *unexpectedServerResponse()
                                                     success:(void (^)(AFHTTPRequestOperation *, id))success
                                                     failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
-    AFHTTPRequestOperation *operation = [super HTTPRequestOperationWithRequest:urlRequest success:success failure:failure];
+    AFHTTPRequestOperation *operation = [super HTTPRequestOperationWithRequest:urlRequest
+                                                                       success:success
+                                                                       failure:failure];
     operation.completionQueue = self.completionQueue;
     return operation;
 }
@@ -326,15 +329,24 @@ static inline NSString *unexpectedServerResponse()
                          sucess:(void(^)(NSArray *opeations, NSArray *bookmarks))sucess
                         failure:(void(^)(AFHTTPRequestOperation *erroneousOpeation, NSError *error))failure
 {
-    dispatch_queue_t operationsCallbackQueue = dispatch_queue_create("com.slabko.readabilityclient.bookmarkslist", DISPATCH_QUEUE_CONCURRENT);
-    NSURLRequest *firstPageRequest = [self bookmarksRequestWithParamaters:parameters forPage:1 itemPerPage:ItemsPerPageRequest];
+    dispatch_queue_t operationsCallbackQueue = dispatch_queue_create("com.slabko.readabilityclient.bookmarkslist",
+                                                                     DISPATCH_QUEUE_CONCURRENT);
+    
+    NSURLRequest *firstPageRequest = [self bookmarksRequestWithParamaters:parameters
+                                                                  forPage:1
+                                                              itemPerPage:ItemsPerPageRequest];
+    
     AFHTTPRequestOperation *firstPageOperation = [self HTTPRequestOperationWithRequest:firstPageRequest
     success:^(AFHTTPRequestOperation *firstPageOperation, NSDictionary *firstPage) {
         NSUInteger totalPages = [((NSString *)firstPage[@"meta"][@"num_pages"]) integerValue];
         NSMutableArray *requests = [NSMutableArray array];
         for (NSUInteger i = 2; i <= totalPages; ++i) {
-            NSURLRequest *nextPageRequest = [self bookmarksRequestWithParamaters:parameters forPage:i itemPerPage:ItemsPerPageRequest];
-            AFHTTPRequestOperation *nextPageOperation = [self HTTPRequestOperationWithRequest:nextPageRequest success:nil failure:nil];
+            NSURLRequest *nextPageRequest = [self bookmarksRequestWithParamaters:parameters
+                                                                         forPage:i
+                                                                     itemPerPage:ItemsPerPageRequest];
+            AFHTTPRequestOperation *nextPageOperation = [self HTTPRequestOperationWithRequest:nextPageRequest
+                                                                                      success:nil
+                                                                                      failure:nil];
             [requests addObject:nextPageOperation];
         }
         NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:requests progressBlock:nil
@@ -346,7 +358,9 @@ static inline NSString *unexpectedServerResponse()
                 
                 NSError *error;
                 AFHTTPRequestOperation *erroneousOpeation;
-                NSArray *bookmarks = [self bookmarksFromReadabilityRequestOperations:operations error:&error erroneousOpeation:&erroneousOpeation];
+                NSArray *bookmarks = [self bookmarksFromReadabilityRequestOperations:operations
+                                                                               error:&error
+                                                                   erroneousOpeation:&erroneousOpeation];
                 if (!bookmarks) {
                     dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
                         failure(erroneousOpeation ,error);
@@ -373,9 +387,12 @@ static inline NSString *unexpectedServerResponse()
 {
     NSParameterAssert(!parameters[@"per_page"]);
     NSParameterAssert(!parameters[@"page"]);
+    
     NSDictionary *basicParametser = @{@"per_page" : @(itemsPerPage),
                                       @"page" : @(pageNumber)};
-    NSMutableDictionary *mergedParameter = [NSMutableDictionary dictionaryWithCapacity:([basicParametser count] + [parameters count])];
+    
+    NSUInteger totalParamtersCount = [basicParametser count] + [parameters count];
+    NSMutableDictionary *mergedParameter = [NSMutableDictionary dictionaryWithCapacity:totalParamtersCount];
     [mergedParameter addEntriesFromDictionary:basicParametser];
     [mergedParameter addEntriesFromDictionary:parameters];
     
@@ -470,7 +487,8 @@ static inline NSString *unexpectedServerResponse()
 
 - (NSString *)bookmarkPath:(NSUInteger)bookmarkId
 {
-    NSString *path = [BookmarksURLPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)bookmarkId]];
+    NSString *path = [BookmarksURLPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu",
+                                                                       (unsigned long)bookmarkId]];
     return path;
 }
 

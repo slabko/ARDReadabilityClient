@@ -89,11 +89,10 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
 
 - (NSString *)encodedURLParameterString
 {
-    NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                             (CFStringRef)self,
-                                                                                             NULL,
-                                                                                             CFSTR(":/=,!$&'()*+;[]@#?"),
-                                                                                             kCFStringEncodingUTF8);
+    CFStringRef cfResult = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)self,
+                                                                   NULL, CFSTR(":/=,!$&'()*+;[]@#?"),
+                                                                   kCFStringEncodingUTF8);
+    NSString *result = (__bridge_transfer NSString *)cfResult;
 	return result;
 }
 
@@ -268,7 +267,7 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
                                      requestURL:(NSURL *)URL
                                 usingHTTPMethod:(NSString *)HTTPMethod
 {
-    NSMutableDictionary *adaptedParameters = [NSMutableDictionary dictionaryWithCapacity:[authorizationParamaters count]];
+    NSMutableDictionary *adaptedParameters = [NSMutableDictionary dictionaryWithCapacity:authorizationParamaters.count];
     [authorizationParamaters enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
         adaptedParameters[key] = [NSString stringWithFormat:@"\"%@\"", value];
     }];
