@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 com.slabko. All rights reserved.
 //
 
-#import "ARDOAuthHTTPClient.h"
+#import "AFNetworking.h"
 #import "ARDReadabilityBookmark.h"
 
 extern NSString *const ARDReadabilityClientErrorDomain;
@@ -19,11 +19,9 @@ typedef NS_ENUM(NSInteger, ARDReadabilityClientErrors){
     ARDReadabilityClientErrorResourceAlreadyExist = -4
 };
 
-@interface ARDReadabilityClient : ARDOAuthHTTPClient
+@interface ARDReadabilityClient : AFHTTPRequestOperationManager
 
-@property (nonatomic, assign) dispatch_queue_t successCallbackQueue;
-@property (nonatomic, assign) dispatch_queue_t failureCallbackQueue;
-
+@property (nonatomic, assign) dispatch_queue_t completionQueue;
 
 ///----------------------------------------------------
 /// @name Initializing
@@ -49,12 +47,11 @@ typedef NS_ENUM(NSInteger, ARDReadabilityClientErrors){
                          success:(void (^)(AFHTTPRequestOperation *operation, NSString *token, NSString *secret))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-@property (readonly, nonatomic) NSString *oauthConsumerKey;
-@property (readonly, nonatomic) NSString *oauthConsumerSecret;
-@property (readonly, nonatomic) NSString *oauthToken;
-@property (readonly, nonatomic) NSString *oauthTokenSecret;
+@property (strong, nonatomic) NSString *oauthConsumerKey;
+@property (strong, nonatomic) NSString *oauthConsumerSecret;
+@property (strong, nonatomic) NSString *oauthToken;
+@property (strong, nonatomic) NSString *oauthTokenSecret;
 @property (readonly, nonatomic, getter = isAuthenticated) BOOL authenticated;
-
 
 ///--------------------------------------------------
 /// @name Requesting and modificating users bookmarks

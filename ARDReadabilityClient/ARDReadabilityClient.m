@@ -7,9 +7,10 @@
 //
 
 #import "ARDReadabilityClient.h"
-#import "ARDOAuthHTTPClient.h"
+#import "ARDOAuthRequestSerializer.h"
 #import "ARDReadabilityDataFormatters.h"
 #import "NSString+ARDRegularExpression.h"
+#import "ARDReadabilityBookmark.h"
 
 NSString *const ARDReadabilityClientErrorDomain = @"ARDReadabilityErrorDomain";
 NSString *const ARDReadabilityClientRootErrorKey = @"ARDReadabilityClientRootErrorKey";
@@ -20,7 +21,7 @@ static NSString *const AuthenticationURLPath = @"oauth/access_token/";
 static NSString *const BookmarksURLPath = @"bookmarks";
 static NSString *const ArticlesURLPath = @"articles";
 
-typedef NS_ENUM(NSInteger, APHTTPErrors) {
+typedef NS_ENUM(NSInteger, ARDHTTPErrors) {
     APHTTPErrorUnauthorized = 401,
     APHTTPErrorConflict = 409
 };
@@ -56,18 +57,33 @@ static inline NSString *unexpectedServerResponse()
 
 @end
 
+@interface ARDReadabilityClient()
+@property (nonatomic, strong) ARDOAuthRequestSerializer *requestSerializer;
+@end
+
 @implementation ARDReadabilityClient
 
 #pragma mark - Initialization
+
+- (instancetype)initWithBaseURL:(NSURL *)url
+{
+    self = [super initWithBaseURL:url];
+    if (self) {
+        ARDOAuthRequestSerializer *requestSerializer = [[ARDOAuthRequestSerializer alloc] init];
+        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        self.requestSerializer = requestSerializer;
+    }
+    return self;
+}
 
 - (id)initWithBaseURL:(NSURL *)url
           consumerKey:(NSString *)oAuthConsumerKey
        consumerSecret:(NSString *)oAuthConsumerSecret
 {
-    self = [super initWithBaseURL:url consumerKey:oAuthConsumerKey consumerSecret:oAuthConsumerSecret];
+    self = [self initWithBaseURL:url];
     if (self) {
-        [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
-        [self setDefaultHeader:@"Accept" value:@"application/json"];
+        self.requestSerializer.oauthConsumerKey = oAuthConsumerKey;
+        self.requestSerializer.oauthConsumerSecret = oAuthConsumerSecret;
     }
     return self;
 }
@@ -78,25 +94,73 @@ static inline NSString *unexpectedServerResponse()
           consumerKey:(NSString *)oAuthConsumerKey
        consumerSecret:(NSString *)oAuthConsumerSecret
 {
-    return [super initWithBaseURL:url
-                            token:oAuthToken
-                      tokenSecret:oAuthTokenSecret
-                      consumerKey:oAuthConsumerKey
-                   consumerSecret:oAuthConsumerSecret];
+    self = [self initWithBaseURL:url];
+    if (self) {
+        self.requestSerializer.oauthToken = oAuthToken;
+        self.requestSerializer.oauthTokenSecret = oAuthTokenSecret;
+        self.requestSerializer.oauthConsumerKey = oAuthConsumerKey;
+        self.requestSerializer.oauthConsumerSecret = oAuthConsumerSecret;
+    }
+    return self;
 }
 
 #pragma mark - Public interface
+
+- (void)setOauthConsumerKey:(NSString *)oauthConsumerKey
+{
+    self.requestSerializer.oauthConsumerKey = oauthConsumerKey;
+}
+
+- (NSString *)oauthConsumerKey
+{
+    return self.requestSerializer.oauthConsumerKey;
+}
+
+- (void)setOauthConsumerSecret:(NSString *)oauthConsumerSecret
+{
+    self.requestSerializer.oauthConsumerSecret = oauthConsumerSecret;
+}
+
+- (NSString *)oauthConsumerSecret
+{
+    return self.requestSerializer.oauthConsumerSecret;
+}
+
+- (void)setOauthToken:(NSString *)oauthToken
+{
+    self.requestSerializer.oauthToken = oauthToken;
+}
+
+- (NSString *)oauthToken
+{
+    return self.requestSerializer.oauthToken;
+}
+
+- (void)setOauthTokenSecret:(NSString *)oauthTokenSecret
+{
+    self.requestSerializer.oauthTokenSecret = oauthTokenSecret;
+}
+
+- (NSString *)oauthTokenSecret
+{
+    return self.requestSerializer.oauthTokenSecret;
+}
+
+- (BOOL)isAuthenticated
+{
+    return self.requestSerializer.isAuthenticated;
+}
 
 - (void)authenticateWithUserName:(NSString *)userName
                         password:(NSString *)password
                          success:(void (^)(AFHTTPRequestOperation *operation, NSString *token, NSString *secret))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 {
-    [self authenticateUsingXAuthWithURL:AuthenticationURLPath
-                               userName:userName
-                               password:password
-                                success:success
-                                failure:failure];
+    [self authenticateUsingXAuthWithPath:AuthenticationURLPath
+                                userName:userName
+                                password:password
+                                 success:success
+                                 failure:failure];
 }
 
 - (void)bookmarksUpdatedSince:(NSDate *)addedSince
@@ -123,7 +187,7 @@ static inline NSString *unexpectedServerResponse()
          failure:(void(^)(AFHTTPRequestOperation *erroneousOpeation, NSError *error))failure
 {
     NSString *path = [self bookmarkPath:bookmarkId];
-    [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self GET:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         ARDReadabilityBookmark *bookmark = [[ARDReadabilityBookmark alloc] initWithJSON:responseObject];
         if (bookmark) {
             sucess(operation, bookmark);
@@ -147,13 +211,11 @@ static inline NSString *unexpectedServerResponse()
     NSDictionary *parameters = @{@"favorite" : favorite ? @"1" : @"0",
                                  @"archive" : archive ? @"1" : @"0",
                                  @"read_percent" : [NSString stringWithFormat:@"%.2f", readPercent]};
-    [self postPath:path parameters:parameters
-           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               success(operation);
-           }
-           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-               failure(operation, [self processError:error requestOperation:operation]);
-           }];
+    [self POST:path parameters:parameters constructingBodyWithBlock:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(operation);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(operation, [self processError:error requestOperation:operation]);
+    }];
 }
 
 - (void)deleteBookmark:(NSUInteger)bookmarkId
@@ -161,7 +223,8 @@ static inline NSString *unexpectedServerResponse()
                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSString *path = [self bookmarkPath:bookmarkId];
-    [self deletePath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [self DELETE:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(operation);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(operation, [self processError:error requestOperation:operation]);
@@ -173,13 +236,11 @@ static inline NSString *unexpectedServerResponse()
                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 {
     NSString *articlePath = [NSString stringWithFormat:@"%@/%@", ArticlesURLPath, articleId];
-    [self getPath:articlePath
-       parameters:nil
-          success:^(AFHTTPRequestOperation *operation, NSDictionary *articleJSON) {
-              success(operation, articleJSON[@"content"]);
-          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              failure(operation, [self processError:error requestOperation:operation]);
-          }];
+    [self GET:articlePath parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *response) {
+        success(operation, response[@"content"]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(operation, [self processError:error requestOperation:operation]);
+    }];
 }
 
 - (void)addBookmarkForArticleURL:(NSURL *)articleURL
@@ -188,28 +249,28 @@ static inline NSString *unexpectedServerResponse()
                          success:(void (^)(AFHTTPRequestOperation *operation, NSString *articleId))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    [self postPath:BookmarksURLPath
-        parameters:@{@"url" : [articleURL absoluteString],
-                     @"favorite" : favorite ? @"1" : @"0",
-                     @"archive" : archive ? @"1" : @"0",
-                     @"allow_duplicates" : @"0"}
-           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               NSString *articleLocation = [operation.response allHeaderFields][@"X-Article-Location"];
-               NSString *articleId = [articleLocation firstMatchOfRegex:@"/([^/]+)$" captureGroupIndex:1];
-               success(operation, articleId);
-           }
-           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-               failure(operation, [self processError:error requestOperation:operation]);
-           }];
+    NSDictionary *parameters = @{@"url" : [articleURL absoluteString],
+                                 @"favorite" : favorite ? @"1" : @"0",
+                                 @"archive" : archive ? @"1" : @"0",
+                                 @"allow_duplicates" : @"0"};
+
+    
+    [self POST:BookmarksURLPath parameters:parameters constructingBodyWithBlock:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *articleLocation = [operation.response allHeaderFields][@"X-Article-Location"];
+        NSString *articleId = [articleLocation firstMatchOfRegex:@"/([^/]+)$" captureGroupIndex:1];
+        success(operation, articleId);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(operation, [self processError:error requestOperation:operation]);
+    }];
 }
 
 #pragma mark - ARDOAuthHTTPClient's methods redefinition
 
-- (void)authenticateUsingXAuthWithURL:(NSString *)accessTokenPath
-                             userName:(NSString *)userName
-                             password:(NSString *)password
-                              success:(void (^)(AFHTTPRequestOperation *, NSString *, NSString *))success
-                              failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (void)authenticateUsingXAuthWithPath:(NSString *)path
+                              userName:(NSString *)userName
+                              password:(NSString *)password
+                               success:(void (^)(AFHTTPRequestOperation *, NSString *, NSString *))success
+                               failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
     void(^failureHandler)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
         NSError *domainError;
@@ -221,11 +282,31 @@ static inline NSString *unexpectedServerResponse()
         failure(operation, domainError);
     };
     
-    [super authenticateUsingXAuthWithURL:accessTokenPath
-                                userName:userName
-                                password:password
-                                 success:success
-                                 failure:failureHandler];
+    void(^successHandler)(AFHTTPRequestOperation *, NSData *) = ^(AFHTTPRequestOperation *operation, NSData *data){
+        if ([self parseAuthenticationResponse:operation.responseString]) {
+            self.requestSerializer.oauthToken = self.oauthToken;
+            self.requestSerializer.oauthTokenSecret = self.oauthTokenSecret;
+            success(operation, self.oauthToken, self.oauthTokenSecret);
+        } else {
+            failure(operation, [NSError errorWithDomain:ARDReadabilityClientErrorDomain
+                                                   code:ARDReadabilityClientErrorUnexpectedServerResponse
+                                               userInfo:@{NSLocalizedDescriptionKey: unexpectedServerResponse()}]);
+        };
+    };
+    
+    NSString *URLString = [[NSURL URLWithString:path relativeToURL:self.baseURL] absoluteString];
+    NSError *error;
+    NSMutableURLRequest *request = [self.requestSerializer authenticationRequestWithURLString:URLString
+                                                                                     userName:userName
+                                                                                     password:password
+                                                                                        error:&error];
+    NSAssert(request, @"Failed to create request: %@", error.localizedDescription);
+    
+    AFHTTPRequestOperation *operation = [super HTTPRequestOperationWithRequest:request
+                                                                       success:successHandler
+                                                                       failure:failureHandler];
+    operation.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [self.operationQueue addOperation:operation];
 }
 
 #pragma mark - AFHTTPClient's methods redefinition
@@ -235,8 +316,7 @@ static inline NSString *unexpectedServerResponse()
                                                     failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
     AFHTTPRequestOperation *operation = [super HTTPRequestOperationWithRequest:urlRequest success:success failure:failure];
-    operation.successCallbackQueue = self.successCallbackQueue;
-    operation.failureCallbackQueue = self.failureCallbackQueue;
+    operation.completionQueue = self.completionQueue;
     return operation;
 }
 
@@ -254,9 +334,10 @@ static inline NSString *unexpectedServerResponse()
         NSMutableArray *requests = [NSMutableArray array];
         for (NSUInteger i = 2; i <= totalPages; ++i) {
             NSURLRequest *nextPageRequest = [self bookmarksRequestWithParamaters:parameters forPage:i itemPerPage:ItemsPerPageRequest];
-            [requests addObject:nextPageRequest];
+            AFHTTPRequestOperation *nextPageOperation = [self HTTPRequestOperationWithRequest:nextPageRequest success:nil failure:nil];
+            [requests addObject:nextPageOperation];
         }
-        [self enqueueBatchOfHTTPRequestOperationsWithRequests:requests progressBlock:nil
+        NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:requests progressBlock:nil
         completionBlock:^(NSArray *morePageOperations) {
             dispatch_async(operationsCallbackQueue, ^{
                 NSMutableArray *operations = [NSMutableArray arrayWithCapacity:totalPages];
@@ -267,22 +348,23 @@ static inline NSString *unexpectedServerResponse()
                 AFHTTPRequestOperation *erroneousOpeation;
                 NSArray *bookmarks = [self bookmarksFromReadabilityRequestOperations:operations error:&error erroneousOpeation:&erroneousOpeation];
                 if (!bookmarks) {
-                    dispatch_async(self.failureCallbackQueue, ^{
+                    dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
                         failure(erroneousOpeation ,error);
                     });
                 }
-                dispatch_async(self.successCallbackQueue ?: dispatch_get_main_queue(), ^{
+                dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
                     sucess(operations, bookmarks);
                 });
             });
         }];
+        [self.operationQueue addOperations:operations waitUntilFinished:NO];
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(operation, [self processError:error requestOperation:operation]);
     }];
     
-    firstPageOperation.successCallbackQueue = operationsCallbackQueue;
-    [self enqueueHTTPRequestOperation:firstPageOperation];
+    firstPageOperation.completionQueue = operationsCallbackQueue;
+    [self.operationQueue addOperation:firstPageOperation];
 }
 
 - (NSURLRequest *)bookmarksRequestWithParamaters:(NSDictionary *)parameters
@@ -307,8 +389,8 @@ static inline NSString *unexpectedServerResponse()
 {
     NSMutableArray *bookmarks = [NSMutableArray arrayWithCapacity:[operations count] * ItemsPerPageRequest];
     
-    for (AFJSONRequestOperation *operation in operations) {
-        NSDictionary *responseJSON = operation.responseJSON;
+    for (AFHTTPRequestOperation *operation in operations) {
+        NSDictionary *responseJSON = operation.responseObject;
         if (!responseJSON) {
             if (error != NULL) {
                 *error = [self processError:operation.error requestOperation:operation];
@@ -325,6 +407,20 @@ static inline NSString *unexpectedServerResponse()
         }
     }
     return [bookmarks copy];
+}
+
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method
+                                      path:(NSString *)path
+                                parameters:(NSDictionary *)parameters
+{
+    NSString *URLString = [[NSURL URLWithString:path relativeToURL:self.baseURL] absoluteString];
+    NSError *error;
+    NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method
+                                                                   URLString:URLString
+                                                                  parameters:parameters
+                                                                       error:&error];
+    NSAssert(request, @"Failed to create NSURLReuqest: %@", error.localizedDescription);
+    return request;
 }
 
 - (NSDate *)minReadabilityKnownDate
@@ -374,7 +470,27 @@ static inline NSString *unexpectedServerResponse()
 
 - (NSString *)bookmarkPath:(NSUInteger)bookmarkId
 {
-    return [BookmarksURLPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)bookmarkId]];
+    NSString *path = [BookmarksURLPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%lu", (unsigned long)bookmarkId]];
+    return path;
+}
+
+- (BOOL)parseAuthenticationResponse:(NSString *)response
+{
+    NSString *baseRegex = @"%@=(.*?)(&|$)";
+    NSString *tokenRegex = [NSString stringWithFormat:baseRegex, @"oauth_token"];
+    NSString *tokenSecretRegex = [NSString stringWithFormat:baseRegex, @"oauth_token_secret"];
+    NSString *token = [response firstMatchOfRegex: tokenRegex
+                                captureGroupIndex:1];
+    NSString *tokenSecret = [response firstMatchOfRegex:tokenSecretRegex
+                                      captureGroupIndex:1];
+    if (!token || !tokenSecret) {
+        return NO;
+    }
+    [self willChangeValueForKey:@"authenticated"];
+    self.oauthToken = token;
+    self.oauthTokenSecret = tokenSecret;
+    [self didChangeValueForKey:@"authenticated"];
+    return YES;
 }
 
 @end

@@ -8,14 +8,12 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
-#import "ARDOAuthHTTPClient.h"
+#import "ARDOAuthRequestSerializer.h"
 #import "NSString+ARDRegularExpression.h"
 
 static NSString *const oAuthVersion = @"1.0";
 static NSString *const oAuthSignatureMethod = @"HMAC-SHA1";
 static NSString *const xAuthMode = @"client_auth";
-
-NSString *const ARDOAuthHTTPClientErrorDomain = @"ARDOAuthHTTPClientErrorDomain";
 
 typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
     ARDOAuthHTTPClientWrongResponse = -1
@@ -159,43 +157,22 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
 
 @end
 
-#pragma mark - OAuthHTTPClient
+#pragma mark - ARDOAuthRequestSerializer
 
-@interface ARDOAuthHTTPClient()
+@interface ARDOAuthRequestSerializer()
 
-@property (readwrite, nonatomic, strong) NSString * oauthConsumerKey;
-@property (readwrite, nonatomic, strong) NSString * oauthConsumerSecret;
-@property (readwrite, nonatomic, strong) NSString * oauthToken;
-@property (readwrite, nonatomic, strong) NSString * oauthTokenSecret;
-@property (readwrite, nonatomic, assign, getter = isAuthenticated) BOOL authenticated;
-
-@property (nonatomic, strong) NSString *oauthTimestamp;
-@property (nonatomic, strong) NSString *oauthNonce;
+@property (nonatomic, readwrite, assign, getter = isAuthenticated) BOOL authenticated;
 
 @end
 
-@implementation ARDOAuthHTTPClient
+@implementation ARDOAuthRequestSerializer
 
 #pragma mark - Initialization
 
-- (id)init
+- (instancetype)initWithConsumerKey:(NSString *)oAuthConsumerKey
+                     consumerSecret:(NSString *)oAuthConsumerSecret;
 {
-    NSString *errorMessageFormat = @"%@ Failed to call initializer. Invoke `initWithBaseURL:consumerKey:consumerSecret` instead.";
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:errorMessageFormat, NSStringFromClass([self class])]
-                                 userInfo:nil];
-}
-
-- (id)initWithBaseURL:(NSURL *)url
-{
-    return [self init];
-}
-
-- (id)initWithBaseURL:(NSURL *)url
-          consumerKey:(NSString *)oAuthConsumerKey
-       consumerSecret:(NSString *)oAuthConsumerSecret;
-{
-    self = [super initWithBaseURL:url];
+    self = [super init];
     if (self) {
         _oauthConsumerKey = oAuthConsumerKey;
         _oauthConsumerSecret = oAuthConsumerSecret;
@@ -203,13 +180,12 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
     return self;
 }
 
-- (id)initWithBaseURL:(NSURL *)url
-                token:(NSString *)oAuthToken
-          tokenSecret:(NSString *)oAuthTokenSecret
-          consumerKey:(NSString *)oAuthConsumerKey
-       consumerSecret:(NSString *)oAuthConsumerSecret;
+- (instancetype)initWithToken:(NSString *)oAuthToken
+                  tokenSecret:(NSString *)oAuthTokenSecret
+                  consumerKey:(NSString *)oAuthConsumerKey
+               consumerSecret:(NSString *)oAuthConsumerSecret;
 {
-    self = [self initWithBaseURL:url consumerKey:oAuthConsumerKey consumerSecret:oAuthConsumerSecret];
+    self = [self initWithConsumerKey:oAuthConsumerKey consumerSecret:oAuthConsumerSecret];
     if (self)
     {
         _oauthToken = oAuthToken;
@@ -225,75 +201,63 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
     return ([self.oauthToken length] && [self.oauthTokenSecret length]);
 }
 
-- (void)authenticateUsingXAuthWithURL:(NSString *)accessTokenPath
-                             userName:(NSString *)userName
-                             password:(NSString *)password
-                              success:(void(^)(AFHTTPRequestOperation *operation, NSString *token, NSString *tokenSecret))success
-                              failure:(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure
+- (NSMutableURLRequest *)authenticationRequestWithURLString:(NSString *)URLString
+                                                   userName:(NSString *)userName
+                                                   password:(NSString *)password
+                                                      error:(NSError **)error;
 {
     NSMutableDictionary *authorizationParamaters = [@{@"x_auth_username": userName,
                                                       @"x_auth_password": password,
                                                       @"x_auth_mode": xAuthMode} mutableCopy];
-    
     [authorizationParamaters addEntriesFromDictionary:[self defeaulOAuthParameters]];
     
     NSMutableURLRequest *request = [self requestWithMethod:@"POST"
-                                                      path:accessTokenPath
+                                                 URLString:URLString
                                                 parameters:nil
-                                   authorizationParamaters:authorizationParamaters];
+                                   authorizationParamaters:authorizationParamaters
+                                                     error:error];
     [request setValue:@"text/html" forHTTPHeaderField:@"Accept"];
     
-    void(^authorizationFailureHandler)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error){
-        failure(operation, error);
-    };
-
-    void(^authorizationSuccessHandler)(AFHTTPRequestOperation *, NSData *) = ^(AFHTTPRequestOperation *operation, NSData *data){
-        if ([self parseAuthenticationResponse:operation.responseString]) {
-            success(operation, self.oauthToken, self.oauthTokenSecret);
-        } else {
-            NSString *errorDesicription = NSLocalizedString(@"Server returns wrong response",
-                                                            @"Wrong authentication server response error descripton");
-            failure(operation, [NSError errorWithDomain:ARDOAuthHTTPClientErrorDomain
-                                                   code:ARDOAuthHTTPClientWrongResponse
-                                               userInfo:@{NSLocalizedDescriptionKey: errorDesicription}]);
-        };
-    };
-    
-    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request
-                                                                      success:authorizationSuccessHandler
-                                                                      failure:authorizationFailureHandler];
-    [self enqueueHTTPRequestOperation:operation];
+    return request;
 }
 
-#pragma mark - AFHTTPClient's methods redefinition
+#pragma mark - AFHTTPRequestSerializer's methods redefinition
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method
-                                      path:(NSString *)path
-                                parameters:(NSDictionary *)parameters
+                                 URLString:(NSString *)URLString
+                                parameters:(id)parameters
+                                     error:(NSError *__autoreleasing *)error
 {
     NSDictionary *authorizationParamaters = [self defeaulOAuthParameters];
     NSMutableURLRequest *request = [self requestWithMethod:method
-                                                      path:path
+                                                 URLString:URLString
                                                 parameters:parameters
-                                   authorizationParamaters:authorizationParamaters];
+                                   authorizationParamaters:authorizationParamaters
+                                                     error:error];
     return request;
 }
 
 #pragma mark - Internal implementation
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method
-                                      path:(NSString *)path
+                                 URLString:(NSString *)URLString
                                 parameters:(NSDictionary *)parameters
                    authorizationParamaters:(NSDictionary *)authorizationParamaters
+                                     error:(NSError *__autoreleasing *)error
 {
-    NSMutableURLRequest *request = [super requestWithMethod:method path:path parameters:parameters];
-    NSDictionary *requestParameters = [request queryParameters];
-    NSString *authorizationHeaderString = [self authorizationHeaderWithParameters:requestParameters
-                                                          authorizationParamaters:authorizationParamaters
-                                                                       requestURL:[request URL]
-                                                                  usingHTTPMethod:[request HTTPMethod]];
+    NSMutableURLRequest *request = [super requestWithMethod:method
+                                                  URLString:URLString
+                                                 parameters:parameters
+                                                      error:error];
     
-    [request addValue:authorizationHeaderString forHTTPHeaderField:@"Authorization"];
+    if (request) {
+        NSDictionary *requestParameters = [request queryParameters];
+        NSString *authorizationHeaderString = [self authorizationHeaderWithParameters:requestParameters
+                                                              authorizationParamaters:authorizationParamaters
+                                                                           requestURL:request.URL
+                                                                      usingHTTPMethod:request.HTTPMethod];
+        [request addValue:authorizationHeaderString forHTTPHeaderField:@"Authorization"];
+    }
     
     return request;
 }
@@ -360,10 +324,12 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
 
 - (NSDictionary *)defeaulOAuthParameters
 {
-    [self updateTimestampAndNonce];
+    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+    NSString *oauthTimestamp = [NSString stringWithFormat:@"%@", [@(floor(timestamp)) stringValue]];
+    NSString *oauthNonce = [[NSUUID UUID] UUIDString];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       self.oauthTimestamp, @"oauth_timestamp",
-                                       self.oauthNonce, @"oauth_nonce",
+                                       oauthTimestamp, @"oauth_timestamp",
+                                       oauthNonce, @"oauth_nonce",
                                        oAuthSignatureMethod, @"oauth_signature_method",
                                        self.oauthConsumerKey, @"oauth_consumer_key",
                                        oAuthVersion ,@"oauth_version",
@@ -372,32 +338,6 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
         [parameters setObject:self.oauthToken forKey:@"oauth_token"];
     
     return parameters;
-}
-
-- (void)updateTimestampAndNonce
-{
-    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
-    self.oauthTimestamp = [NSString stringWithFormat:@"%@", [@(floor(timestamp)) stringValue]];
-    self.oauthNonce = [[NSUUID UUID] UUIDString];
-}
-
-- (BOOL)parseAuthenticationResponse:(NSString *)response
-{
-    NSString *baseRegex = @"%@=(.*?)(&|$)";
-    NSString *tokenRegex = [NSString stringWithFormat:baseRegex, @"oauth_token"];
-    NSString *tokenSecretRegex = [NSString stringWithFormat:baseRegex, @"oauth_token_secret"];
-    NSString *token = [response firstMatchOfRegex: tokenRegex
-                                                       captureGroupIndex:1];
-    NSString *tokenSecret = [response firstMatchOfRegex:tokenSecretRegex
-                                                             captureGroupIndex:1];
-    if (!token || !tokenSecret) {
-        return NO;
-    }
-    [self willChangeValueForKey:@"authenticated"];
-    self.oauthToken = token;
-    self.oauthTokenSecret = tokenSecret;
-    [self didChangeValueForKey:@"authenticated"];
-    return YES;
 }
 
 @end
