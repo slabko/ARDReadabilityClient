@@ -210,6 +210,7 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
                                                       @"x_auth_password": password,
                                                       @"x_auth_mode": xAuthMode} mutableCopy];
     [authorizationParamaters addEntriesFromDictionary:[self defeaulOAuthParameters]];
+    [authorizationParamaters removeObjectForKey:@"oauth_token"];
     
     NSMutableURLRequest *request = [self requestWithMethod:@"POST"
                                                  URLString:URLString
@@ -289,13 +290,14 @@ typedef NS_ENUM(NSInteger, ARDOAuthHTTPClientErrors){
                            requestURL:(NSURL *)URL
                       usingHTTPMethod:(NSString *)HTTPMethod
 {
+    NSAssert([self.oauthConsumerSecret length], @"Cannot generate signature without OAuth Consumer Secret");
     NSString *baseString = [self signatureBaseWithParameters:requestParameters
-                                                   authorizationParamaters:authorizationParamaters
-                                                                requestURL:URL
-                                                           usingHTTPMethod:HTTPMethod];
-    NSString *secret = [NSString stringWithFormat:@"%@&%@",
-                        ([self.oauthConsumerSecret length] ? self.oauthConsumerSecret : @""),
-                        ([self.oauthTokenSecret length] ? self.oauthTokenSecret : @"")];
+                                     authorizationParamaters:authorizationParamaters
+                                                  requestURL:URL
+                                             usingHTTPMethod:HTTPMethod];
+    NSString *tokenSecret = ([self.oauthTokenSecret length] && [authorizationParamaters objectForKey:@"oauth_token"] ?
+                                  self.oauthTokenSecret : [NSString string]);
+    NSString *secret = [NSString stringWithFormat:@"%@&%@", self.oauthConsumerSecret, tokenSecret];
     NSString *signature = [baseString signUsingSHA1WithSecret:secret];
     return signature;
 }
