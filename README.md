@@ -63,7 +63,7 @@ There are many other things, and all of them are very obvious to use. Just check
 
 Simply add to your Podfile:
 
-    pod 'ARDReadabilityClient', '~> 0.1'
+    pod 'ARDReadabilityClient', '~> 0.2'
 
 And run `pod update`
 
